@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.xml.crypto.Data;
 
 /**
  * index 控制器
@@ -32,6 +31,20 @@ public class IndexController {
     @GetMapping("/wc/{msg}")
     public String welcome(@PathVariable String msg){
         return WC_MSG + ",msg";
+    }
+
+    /**
+     *  model参数
+     * @param dto
+     * @return
+     */
+    @PostMapping("/wc")
+    public Result<DataDto> welcome(@RequestBody MsgDto dto){
+        System.out.println(dto.getMsg());
+        System.out.println(dto.getTitle());
+
+        return new Result<>(200,"",new DataDto("zs","you are welcome"));
+
     }
 
 
